@@ -1,0 +1,530 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Батырова Майса — Учитель начальных классов</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Georgia', sans-serif;
+    background: #fdfbf7;
+    color: #2c3e50;
+    line-height: 1.7;
+  }
+
+  /* ---------- ШАПКА ---------- */
+  header {
+    background: linear-gradient(135deg, #f9c74f 0%, #f8961e 60%, #f3722c 100%);
+    color: #fff;
+    padding: 60px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 60px;
+    background: #fdfbf7;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+  .avatar {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 60px;
+    margin: 0 auto 20px;
+    border: 5px solid #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    position: relative; z-index: 2;
+  }
+  header h1 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+    position: relative; z-index: 2;
+  }
+  header p.subtitle {
+    font-size: 1.15em;
+    opacity: .95;
+    position: relative; z-index: 2;
+  }
+
+  /* ---------- НАВИГАЦИЯ ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  }
+  nav ul {
+    list-style: none;
+    display: flex; flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav a {
+    display: block;
+    padding: 16px 22px;
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: .95em;
+    transition: .25s;
+  }
+  nav a:hover, nav a.active {
+    color: #f3722c;
+    background: #fff7ec;
+  }
+
+  /* ---------- КОНТЕЙНЕР ---------- */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px 20px;
+  }
+
+  section { margin-bottom: 70px; scroll-margin-top: 70px; }
+
+  h2 {
+    font-size: 1.9em;
+    color: #f3722c;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 3px dashed #f9c74f;
+  }
+  h3 { color: #2c3e50; margin: 22px 0 10px; font-size: 1.25em; }
+
+  /* ---------- КАРТОЧКИ ---------- */
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    margin-bottom: 22px;
+    border-left: 5px solid #f9c74f;
+    transition: transform .25s;
+  }
+  .card:hover { transform: translateY(-4px); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: #fff3d6;
+    color: #c05621;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: .85em;
+    font-weight: 600;
+    margin: 4px 6px 4px 0;
+  }
+
+  /* ---------- СПИСКИ ---------- */
+  ul.styled { list-style: none; padding-left: 0; }
+  ul.styled li {
+    padding: 8px 0 8px 34px;
+    position: relative;
+  }
+  ul.styled li::before {
+    content: "★";
+    position: absolute;
+    left: 6px;
+    color: #f9c74f;
+    font-size: 1.1em;
+  }
+
+  /* ---------- МЕТОДЫ ---------- */
+  .method-icon { font-size: 2em; margin-bottom: 8px; }
+
+  /* ---------- КОПИЛКА ---------- */
+  .filler {
+    background: #fff;
+    border: 2px dashed #f9c74f;
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: .25s;
+  }
+  .filler:hover { background: #fff7ec; transform: scale(1.02); }
+  .filler .emoji { font-size: 2.4em; display: block; margin-bottom: 8px; }
+
+  /* ---------- РОДИТЕЛЯМ ---------- */
+  .tip {
+    background: #eef7ff;
+    border-left: 5px solid #4a90e2;
+    padding: 18px 22px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+  }
+  .tip strong { color: #2c5f9e; }
+
+  /* ---------- КНОПКА ВВЕРХ ---------- */
+  #toTop {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: #f3722c;
+    color: #fff;
+    border: none;
+    font-size: 1.4em;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(243,114,44,.4);
+    display: none;
+    transition: .25s;
+  }
+  #toTop:hover { background: #d95e1f; transform: translateY(-3px); }
+
+  footer {
+    background: #2c3e50;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: .9em;
+  }
+  footer a { color: #f9c74f; text-decoration: none; }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.6em; }
+    nav a { padding: 12px 14px; font-size: .85em; }
+    h2 { font-size: 1.5em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= ШАПКА ================= -->
+<header>
+  <div class="avatar">👩‍🏫</div>
+  <h1>Батырова Майса</h1>
+  <p class="subtitle">Учитель начальных классов · Студентка ЮФУ</p>
+  <p class="subtitle">«Учить — значит зажигать огонь, а не наполнять сосуд»</p>
+</header>
+
+<!-- ================= НАВИГАЦИЯ ================= -->
+<nav>
+  <ul>
+    <li><a href="#about" class="active">О себе</a></li>
+    <li><a href="#achievements">Заслуги</a></li>
+    <li><a href="#methods">Методы и приёмы</a></li>
+    <li><a href="#library">Методическая копилка</a></li>
+    <li><a href="#parents">Родителям и ученикам</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- ================= О СЕБЕ ================= -->
+  <section id="about">
+    <h2>🌸 О себе</h2>
+    <div class="card">
+      <p>
+        Здравствуйте! Меня зовут <strong>Батырова Майса</strong>. Я студентка
+        <strong>Южного федерального университета (ЮФУ)</strong>, обучаюсь
+        по направлению <strong>«Педагогика начальных классов»</strong>.
+      </p>
+      <br>
+      <p>
+        Педагогика для меня — не просто профессия, а призвание. Мне нравится
+        работать с детьми младшего школьного возраста, потому что именно в этот
+        период закладываются основы личности, любознательности и любви к учёбе.
+        Я убеждена: каждый ребёнок — это уникальный мир, и задача учителя —
+        помочь ему раскрыться.
+      </p>
+      <br>
+      <p>
+        В своей практике я совмещаю классические традиции отечественной
+        педагогики с современными интерактивными технологиями, игровыми
+        приёмами и индивидуальным подходом к каждому ученику.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="method-icon">🎓</div>
+        <h3>Образование</h3>
+        <p>Южный федеральный университет<br>
+        Педагогика начальных классов</p>
+      </div>
+      <div class="card">
+        <div class="method-icon">💡</div>
+        <h3>Мой принцип</h3>
+        <p>Не «давать знания», а научить ребёнка думать, задавать вопросы и радоваться открытиям.</p>
+      </div>
+      <div class="card">
+        <div class="method-icon">❤️</div>
+        <h3>Моя цель</h3>
+        <p>Создать на уроке атмосферу, в которой каждому ребёнку хочется учиться и творить.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ЗАСЛУГИ ================= -->
+  <section id="achievements">
+    <h2>🏆 Заслуги и достижения</h2>
+
+    <div class="card">
+      <h3>Учебные и профессиональные достижения</h3>
+      <ul class="styled">
+        <li>Студентка ЮФУ по направлению «Педагогика начальных классов»</li>
+        <li>Успешное прохождение педагогической практики в начальной школе</li>
+        <li>Участие в научно-практических конференциях по педагогике</li>
+        <li>Разработка авторских дидактических материалов для младших школьников</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Темы, над которыми я работаю</h3>
+      <span class="badge">Игровые технологии</span>
+      <span class="badge">Развитие читательской грамотности</span>
+      <span class="badge">Здоровьесбережение</span>
+      <span class="badge">Проектная деятельность</span>
+      <span class="badge">ИКТ в начальной школе</span>
+      <span class="badge">Индивидуальный подход</span>
+    </div>
+
+    <div class="card">
+      <h3>Мои победы и участие</h3>
+      <ul class="styled">
+        <li>Участие в конкурсах педагогического мастерства среди студентов</li>
+        <li>Волонтёрская работа с детьми в образовательных и развивающих программах</li>
+        <li>Публикации методических разработок в студенческих сборниках</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= МЕТОДЫ И ПРИЁМЫ ================= -->
+  <section id="methods">
+    <h2>🧩 Методы и приёмы в обучении</h2>
+
+    <div class="card">
+      <div class="method-icon">🎲</div>
+      <h3>1. Игровые технологии</h3>
+      <p>
+        Игра — ведущий вид деятельности младшего школьника. На уроках я использую
+        дидактические игры, квесты, «математические путешествия», ролевые ситуации.
+        Например, при закреплении таблицы умножения — игра «Магазин», где дети
+        «покупают» товары и считают стоимость.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="method-icon">🖼️</div>
+      <h3>2. Наглядность и ИКТ</h3>
+      <p>
+        Презентации, интерактивные тренажёры, обучающие мультфильмы и онлайн-платформы
+        (Учи.ру, ЯКласс) помогают сделать материал живым и понятным. Дети лучше
+        усваивают информацию, когда они её видят, слышат и пробуют сами.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="method-icon">🤝</div>
+      <h3>3. Работа в парах и группах</h3>
+      <p>
+        Приём «Учим друг друга», «Мозговой штурм», «Вертушка» — развивают
+        коммуникативные навыки, умение договариваться и слушать. Дети учатся
+        не только у учителя, но и друг у друга.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="method-icon">📖</div>
+      <h3>4. Приёмы развития читательской грамотности</h3>
+      <p>
+        «Чтение с остановками», «Кубик Блума», «Синквейн», «Дерево предсказаний» —
+        помогают не просто читать, а понимать текст, анализировать и делать выводы.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="method-icon">🌱</div>
+      <h3>5. Здоровьесберегающие приёмы</h3>
+      <p>
+        Физкультминутки, пальчиковая гимнастика, дыхательные упражнения,
+        «минутки тишины» и смена видов деятельности — обязательная часть каждого
+        урока, чтобы дети не уставали и сохраняли внимание.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="method-icon">🎯</div>
+      <h3>6. Рефлексия и обратная связь</h3>
+      <p>
+        «Лесенка успеха», «Светофор», «Смайлики настроения», «Продолжи фразу» —
+        помогают ребёнку самому оценить, что получилось, а над чем ещё нужно
+        поработать. Это формирует осознанное отношение к учёбе.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="method-icon">🌈</div>
+      <h3>7. Дифференцированный подход</h3>
+      <p>
+        Задания разного уровня сложности, индивидуальные карточки, работа
+        «по способностям» — чтобы каждый ученик шёл в своём темпе и чувствовал
+        успех.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= МЕТОДИЧЕСКАЯ КОПИЛКА ================= -->
+  <section id="library">
+    <h2>📚 Методическая копилка</h2>
+    <p style="margin-bottom:22px; color:#7f8c8d;">
+      Здесь собраны материалы, которые я разрабатываю и использую в работе:
+      конспекты уроков, дидактические игры, карточки, презентации и шаблоны.
+    </p>
+
+    <div class="grid">
+      <div class="filler">
+        <span class="emoji">✏️</span>
+        <strong>Конспекты уроков</strong>
+        <p>Русский язык, математика, чтение, окружающий мир</p>
+      </div>
+      <div class="filler">
+        <span class="emoji">🎲</span>
+        <strong>Дидактические игры</strong>
+        <p>Игры для уроков и внеурочной деятельности</p>
+      </div>
+      <div class="filler">
+        <span class="emoji">🗂️</span>
+        <strong>Карточки и тренажёры</strong>
+        <p>Раздаточный материал по предметам</p>
+      </div>
+      <div class="filler">
+        <span class="emoji">🖥️</span>
+        <strong>Презентации</strong>
+        <p>Наглядные материалы к урокам</p>
+      </div>
+      <div class="filler">
+        <span class="emoji">📝</span>
+        <strong>Контрольные и проверочные</strong>
+        <p>Задания для диагностики знаний</p>
+      </div>
+      <div class="filler">
+        <span class="emoji">🎨</span>
+        <strong>Внеурочные занятия</strong>
+        <p>Классные часы, праздники, проекты</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <h3>🔗 Полезные образовательные платформы</h3>
+      <ul class="styled">
+        <li><strong>Учи.ру</strong> — интерактивные задания по всем предметам</li>
+        <li><strong>ЯКласс</strong> — тренировочные упражнения и проверка знаний</li>
+        <li><strong>РЭШ (Российская электронная школа)</strong> — видеоуроки и конспекты</li>
+        <li><strong>LearningApps</strong> — создание интерактивных упражнений</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= РОДИТЕЛЯМ И УЧЕНИКАМ ================= -->
+  <section id="parents">
+    <h2>👨‍👩‍👧 Родителям и ученикам</h2>
+
+    <h3>💌 Уважаемые родители!</h3>
+    <div class="card">
+      <p>
+        Начальная школа — важный этап в жизни ребёнка. От того, как мы вместе —
+        учитель и семья — поддержим его в этот период, зависит его отношение
+        к учёбе на многие годы. Я всегда открыта к диалогу и готова помочь.
+      </p>
+    </div>
+
+    <div class="tip">
+      <strong>📌 Совет 1. Режим дня.</strong>
+      Помогите ребёнку соблюдать режим: сон, питание, прогулки и время для
+      домашних заданий. Уставший ребёнок не может учиться хорошо.
+    </div>
+    <div class="tip">
+      <strong>📌 Совет 2. Домашнее задание.</strong>
+      Не делайте задание за ребёнка. Лучше направьте, задайте наводящий вопрос,
+      поддержите. Пусть он сам найдёт решение — это придаёт уверенности.
+    </div>
+    <div class="tip">
+      <strong>📌 Совет 3. Чтение каждый день.</strong>
+      15–20 минут семейного чтения в день развивают речь, воображение и любовь
+      к книгам. Обсуждайте прочитанное.
+    </div>
+    <div class="tip">
+      <strong>📌 Совет 4. Похвала важнее критики.</strong>
+      Отмечайте даже маленькие успехи. Верьте в ребёнка — и он поверит в себя.
+    </div>
+    <div class="tip">
+      <strong>📌 Совет 5. Обратная связь.</strong>
+      Если есть вопросы или тревоги — пишите и звоните. Мы решаем трудности
+      вместе.
+    </div>
+
+    <h3 style="margin-top:35px;">🎈 Ученикам</h3>
+    <div class="card">
+      <p>
+        Дорогие ребята! Помните: ошибаться — не страшно. Страшно — не пробовать.
+        Каждый день вы становитесь умнее, сильнее и добрее. Задавайте вопросы,
+        фантазируйте, не бойтесь трудностей — я всегда рядом и помогу!
+      </p>
+    </div>
+
+    <div class="card" style="border-left-color:#4a90e2;">
+      <h3>📞 Контакты для связи</h3>
+      <p><strong>Email:</strong> maica.batyrova@example.com <em>(замените на свой)</em></p>
+      <p><strong>Часы консультаций:</strong> по договорённости</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- ================= КНОПКА ВВЕРХ ================= -->
+<button id="toTop" title="Наверх">↑</button>
+
+<!-- ================= ПОДВАЛ ================= -->
+<footer>
+  <p>© 2025 Батырова Майса · Учитель начальных классов · ЮФУ</p>
+  <p style="margin-top:8px;">Сайт создан с любовью к детям и педагогике ❤️</p>
+</footer>
+
+<script>
+  /* -------- Плавная прокрутка и подсветка активного пункта -------- */
+  const links = document.querySelectorAll('nav a');
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* -------- Подсветка активного раздела при скролле -------- */
+  const sections = document.querySelectorAll('section');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 120;
+      if (window.scrollY >= top) current = sec.id;
+    });
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+
+    /* -------- Кнопка «наверх» -------- */
+    document.getElementById('toTop').style.display =
+      window.scrollY > 400 ? 'block' : 'none';
+  });
+
+  /* -------- Кнопка «наверх» -------- */
+  document.getElementById('toTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
